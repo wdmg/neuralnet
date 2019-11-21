@@ -1,0 +1,38 @@
+{
+  "name": "wdmg/neuralnet",
+  "type": "library",
+  "description": "Multi-layer Neural Network",
+  "keywords": ["neuralnet", "neuralnetwork", "multi-layer", "backpropagation"],
+  "license": "MIT",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wdmg/neuralnet",
+  "support": {
+    "source": "https://github.com/wdmg/neuralnet",
+    "issues": "https://github.com/wdmg/neuralnet/issues"
+  },
+  "authors": [
+    {
+      "name": "Alexsander Vyshnyvetskyy",
+      "email": "alex.vyshnyvetskyy@gmail.com"
+    },
+    {
+      "name": "W.D.M.Group, Ukraine",
+      "email": "wdmg.com.ua@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5 || ^6.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "wdmg\\ai\\": "src/"
+    },
+    "files": ["src/NeuralNet.php"]
+  },
+  "extra": {
+  }
+}
