@@ -39,13 +39,11 @@ class NeuralNet
     }
 
     /*
-     * Функция активации нейрона
-     * в зависимости от порогового значения и типа выбранной функции
+     * Функция активации нейрона в зависимости от порогового значения и типа выбранной функции
      *
      * @param $input integer, значение суммы весов нейрона
      * @param $type integer, тип выбранной функции активации
-     * @return integer or boolean, значение возбужденного/не возбуждённого
-     * нейрона или false при ошибке
+     * @return integer or boolean, значение возбужденного/не возбуждённого нейрона или false при ошибке
      */
     public function activation($value = 0, $type) {
         $output = false;
@@ -62,11 +60,10 @@ class NeuralNet
         } else if ($type === self::ACTIVATION_FUNC_LRELU) {
             $output = ($value > 0) ? max(0, $value) : -max(0, ((1-$value) * $this->angular));
         } else if ($type === self::ACTIVATION_FUNC_PRELU) {
-            //return max(0, $value) + ($this->angular * min(0, $value));
             $output = max(0, $value) + ($this->shared * min(0, $value));
         } else if ($type === self::ACTIVATION_FUNC_RRELU) {
 
-            $angular = rand($this->angular, $this->angular);
+            $angular = rand(-$this->angular, $this->angular);
             if(rand(1, 10) % 2 === 0)
                 $angular = ($angular + ((rand((($angular + 1) / 10), (($angular + 1) * 10))) / 100));
             else
@@ -79,14 +76,13 @@ class NeuralNet
     }
 
     /*
-     * Функция сравнивает два массива
-     * и определяет их схожесть/расхождение в условном выражении от 0 до 1 или в %
+     * Функция сравнивает два массива и определяет их схожесть/расхождение
      *
      * @param $array1 array, массив для сравнения
      * @param $array2 array, массив для сравнения
      * @return $threshold integer or float, погрешность для значений с плавающей точкой
      * @return $format boolean, форматирование результирующего значения в %
-     * @return string or integer, текущий статус сети
+     * @return string or integer, схожесть/расхождение в условном выражении от 0 до 1 или в %
      * */
     public function conformity($array1, $array2, $threshold = 0, $format = false) {
 
@@ -136,8 +132,7 @@ class NeuralNet
      * @param $depth integer, глубина усреднения
      * @param $filter string, применяемый фильтр усреднения (summ, middle, max),
      * если не установлен, функция возвращает выборку усреднения
-     * @return array or boolean, массив усредненных значений или
-     * false при ошибке
+     * @return array or boolean, массив усредненных значений или false при ошибке
      */
     public function pooling($array = [], $depth = 1, $filter = null) {
 
@@ -209,8 +204,7 @@ class NeuralNet
      * @param $input array, входные значения
      * @param $precision boolean (false) or integer, порог округления значений
      * @param $abs boolean, флаг приведения к абсолютному положительному значению
-     * @return array or boolean, массив значений в диапазоне от -1 и до 1 или
-     * false при ошибке
+     * @return array or boolean, массив значений в диапазоне от -1 и до 1 или false при ошибке
      */
     public function downScale($array = [], $precision = false, $abs = false) {
 
@@ -236,8 +230,7 @@ class NeuralNet
      * @param $max integer, максимально допустимый порог
      * @param $precision boolean (false) or integer, порог округления значений
      * @param $abs boolean, флаг приведения к абсолютному положительному значению
-     * @return array or boolean, массив значений в диапазоне от -1 и до 1 или
-     * false при ошибке
+     * @return array or boolean, массив значений в диапазоне от -1 и до 1 или false при ошибке
      * */
     public function normalize($array = null, $min = 0, $max = 255, $precision = false, $abs = false) {
 
